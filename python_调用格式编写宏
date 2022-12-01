@@ -1,0 +1,988 @@
+import xbot
+from xbot import print, sleep
+from . import package
+import xbot_visual
+import time
+import os
+import sys
+import glob
+import random
+import re
+import win32com
+from win32com.client import Dispatch
+
+def main(args):
+    pass
+
+def 注入宏():
+    宏代码=   '''Sub 填写流水核查底稿格式宏()
+    Range("A1").Select
+    ActiveCell.FormulaR1C1 = "被审计单位："
+    Range("A2").Select
+    ActiveCell.FormulaR1C1 = "项目：银行账户大额资金流水检查汇总表"
+    Range("A3").Select
+    ActiveCell.FormulaR1C1 = "财务报表截止日期："
+    Range("A4").Select
+    ActiveWindow.SmallScroll ToRight:=-39
+    Range("B5").Select
+    Sheets("Sheet1").Select
+    Sheets("Sheet1").Name = "银行流水核查汇总表"
+    Range("C11").Select
+    ActiveWindow.SmallScroll ToRight:=6
+    Range("N1").Select
+    ActiveWindow.SmallScroll Down:=-9
+    ActiveCell.FormulaR1C1 = "编制人：xy 编制日期："
+    Range("N3").Select
+    ActiveCell.FormulaR1C1 = "复核人：war 符合日期："
+    Range("N2:N3").Select
+    With Selection
+        .HorizontalAlignment = xlRight
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Range("K4").Select
+    ActiveWindow.SmallScroll ToRight:=-21
+    Range("A4").Select
+    ActiveWindow.SmallScroll ToRight:=6
+    Range("A4:N4").Select
+    ActiveWindow.SmallScroll ToRight:=-12
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    Selection.Borders(xlEdgeLeft).LineStyle = xlNone
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    Selection.Borders(xlEdgeBottom).LineStyle = xlNone
+    Selection.Borders(xlEdgeRight).LineStyle = xlNone
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    Selection.Borders(xlInsideHorizontal).LineStyle = xlNone
+    Range("D7").Select
+    ActiveWindow.SmallScroll ToRight:=-6
+    Range("A5").Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    Selection.Borders(xlEdgeLeft).LineStyle = xlNone
+    Selection.Borders(xlEdgeTop).LineStyle = xlNone
+    Selection.Borders(xlEdgeBottom).LineStyle = xlNone
+    Selection.Borders(xlEdgeRight).LineStyle = xlNone
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    Selection.Borders(xlInsideHorizontal).LineStyle = xlNone
+    ActiveCell.FormulaR1C1 = "序号"
+    Range("B5").Select
+    ActiveCell.FormulaR1C1 = "开户银行"
+    Range("C5").Select
+    ActiveCell.FormulaR1C1 = "账户名称"
+    Range("D5").Select
+    ActiveCell.FormulaR1C1 = "开户银行账号"
+    Range("E5").Select
+    ActiveCell.FormulaR1C1 = "1-12月账面情况"
+    Range("G5").Select
+    ActiveCell.FormulaR1C1 = "1-12月检查情况"
+    Range("E6").Select
+    ActiveCell.FormulaR1C1 = "本期借方发生额"
+    Range("F6").Select
+    ActiveCell.FormulaR1C1 = "本期贷方发生额"
+    Range("G6").Select
+    ActiveCell.FormulaR1C1 = "检查借方发生额"
+    Range("H6").Select
+    ActiveCell.FormulaR1C1 = "检查贷方发生额"
+    Range("I6").Select
+    ActiveCell.FormulaR1C1 = "借方检查比例"
+    Range("J6").Select
+    ActiveCell.FormulaR1C1 = "贷方检查比例"
+    Range("E5:F5").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    Range("G5:J5").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    Range("K5").Select
+    ActiveCell.FormulaR1C1 = "核对结论"
+    Range("L5").Select
+    ActiveCell.FormulaR1C1 = "抽样标准"
+    Range("M5").Select
+    ActiveCell.FormulaR1C1 = "银行流水"
+    Range("N5").Select
+    ActiveCell.FormulaR1C1 = "备注"
+    Range("N7").Select
+    ActiveWindow.SmallScroll ToRight:=-24
+    Range("A5:A6,B5:B6,C5:C6,D5:D6").Select
+    Range("D5").Activate
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    Range("E5:F5").Select
+    ActiveWindow.SmallScroll ToRight:=3
+    Range("K5:K6,L5:L6,M5:M6,N5:N6").Select
+    Range("N5").Activate
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    Range("K8").Select
+    ActiveWindow.SmallScroll ToRight:=-9
+    Range("A7").Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("A8").Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("A9").Select
+    ActiveCell.FormulaR1C1 = "合计"
+    Range("A9:B9").Select
+    Range("B9").Activate
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    Range("A10").Select
+    ActiveCell.FormulaR1C1 = "核对说明："
+    Range("A11").Select
+    ActiveCell.FormulaR1C1 = "1.仅列示本期产生发生额的银行账户："
+    Range("A12").Select
+    ActiveCell.FormulaR1C1 = "2.和对流程分为顺向和逆向，逆向核对系检查流水中是否有超过标准而未被记入账面的："
+    Range("A11").Select
+    ActiveCell.FormulaR1C1 = "1.仅列示本期产生发生额的银行账户；"
+    Range("A12").Select
+    ActiveCell.FormulaR1C1 = "2.和对流程分为顺向和逆向，逆向核对系检查流水中是否有超过标准而未被记入账面的；"
+    Range("A5:A6").Select
+    ActiveWindow.SmallScroll ToRight:=6
+    Range("A5:N9").Select
+    ActiveWindow.SmallScroll ToRight:=-9
+    Range("A5:N9").Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    Selection.Borders(xlEdgeLeft).LineStyle = xlNone
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    Selection.Borders(xlEdgeBottom).LineStyle = xlNone
+    Selection.Borders(xlEdgeRight).LineStyle = xlNone
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    Selection.Borders(xlInsideHorizontal).LineStyle = xlNone
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    Range("A5:A6").Select
+    ActiveWindow.SmallScroll ToRight:=6
+    Range("A5:N6").Select
+    ActiveWindow.SmallScroll ToRight:=-15
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorAccent1
+        .TintAndShade = 0.599993896298105
+        .PatternTintAndShade = 0
+    End With
+    Range("E9").Select
+    ActiveWindow.SmallScroll ToRight:=-9
+    Range("A5:A6").Select
+    ActiveWindow.SmallScroll ToRight:=0
+    Range("A5:N9").Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    Range("D7").Select
+    ActiveWindow.SmallScroll ToRight:=-9
+    Range("A5:A6").Select
+    ActiveWindow.SmallScroll ToRight:=6
+    Range("A5:N10").Select
+    ActiveWindow.SmallScroll ToRight:=-27
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    Selection.Borders(xlEdgeBottom).LineStyle = xlNone
+    Range("A3:N3").Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    Selection.Borders(xlEdgeLeft).LineStyle = xlNone
+    Selection.Borders(xlEdgeTop).LineStyle = xlNone
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThick
+    End With
+    Selection.Borders(xlEdgeRight).LineStyle = xlNone
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    Selection.Borders(xlInsideHorizontal).LineStyle = xlNone
+    ActiveWindow.SmallScroll ToRight:=-24
+    Range("A10:N10").Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    Selection.Borders(xlEdgeLeft).LineStyle = xlNone
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThick
+    End With
+    Selection.Borders(xlEdgeRight).LineStyle = xlNone
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    Selection.Borders(xlInsideHorizontal).LineStyle = xlNone
+    Range("O10").Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThick
+    End With
+    Selection.Borders(xlEdgeTop).LineStyle = xlNone
+    Selection.Borders(xlEdgeBottom).LineStyle = xlNone
+    Selection.Borders(xlEdgeRight).LineStyle = xlNone
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    Selection.Borders(xlInsideHorizontal).LineStyle = xlNone
+    Range("N7:N9,N5:N6,N5:N6,N4").Select
+    Range("N4").Activate
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThick
+    End With
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    ActiveWindow.SmallScroll ToRight:=-24
+    Range("D8").Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThick
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThick
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    Range("D12").Select
+    ActiveWindow.SmallScroll Down:=-6
+    ActiveWindow.SmallScroll ToRight:=-12
+    Rows("10:12").Select
+    Selection.RowHeight = 17.3
+    Range("C14").Select
+    ActiveWindow.SmallScroll Down:=-15
+    Columns("D:D").ColumnWidth = 12.4
+    Columns("E:E").ColumnWidth = 10.87
+    Columns("F:F").ColumnWidth = 12.07
+    Columns("E:F").Select
+    Selection.ColumnWidth = 16.07
+    Selection.ColumnWidth = 13.6
+    Columns("G:J").Select
+    ActiveWindow.SmallScroll ToRight:=3
+    Selection.ColumnWidth = 13.33
+    Range("I9").Select
+    ActiveWindow.SmallScroll ToRight:=-9
+    Range("D8").Select
+    ActiveWindow.SmallScroll Down:=-15
+    Sheets.Add After:=ActiveSheet
+    Sheets("Sheet1").Select
+    Sheets("Sheet1").Name = "核对异常汇总表"
+    Range("C15").Select
+    ActiveWindow.SmallScroll Down:=-6
+    Range("A1").Select
+    ActiveCell.FormulaR1C1 = "=银行流水核查汇总表!RC"
+    Range("A2").Select
+    ActiveCell.FormulaR1C1 = "=银行流水核查汇总表!RC"
+    Range("A3").Select
+    ActiveCell.FormulaR1C1 = "=银行流水核查汇总表!RC"
+    Range("A4").Select
+    ActiveCell.FormulaR1C1 = "日期"
+    Range("B4").Select
+    ActiveCell.FormulaR1C1 = "凭证号"
+    Range("C4").Select
+    ActiveCell.FormulaR1C1 = "业务内容"
+    Range("D4").Select
+    ActiveCell.FormulaR1C1 = "企业日记账记录"
+    Range("D5").Select
+    ActiveCell.FormulaR1C1 = "对方会计科目"
+    Range("E5").Select
+    ActiveCell.FormulaR1C1 = "借方金额"
+    Range("F5").Select
+    ActiveCell.FormulaR1C1 = "贷方金额"
+    Range("G5").Select
+    ActiveCell.FormulaR1C1 = "记账日期"
+    Range("H5").Select
+    ActiveCell.FormulaR1C1 = "交易对方名称"
+    Range("D4:H4").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    Range("I4").Select
+    Range("H5").Select
+    Selection.Cut
+    Range("E5").Select
+    Selection.Insert Shift:=xlToRight
+    Range("I4").Select
+    ActiveWindow.SmallScroll ToRight:=3
+    ActiveCell.FormulaR1C1 = "银行日记账记录"
+    Range("I5").Select
+    ActiveCell.FormulaR1C1 = "交易对方名称"
+    Range("J5").Select
+    ActiveCell.FormulaR1C1 = "借方金额"
+    Range("K5").Select
+    ActiveCell.FormulaR1C1 = "贷方金额"
+    Range("L5").Select
+    ActiveCell.FormulaR1C1 = "流水单日期"
+    Range("I4:L4").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    Range("M4").Select
+    ActiveCell.FormulaR1C1 = "异常原因"
+    Range("N4").Select
+    ActiveCell.FormulaR1C1 = "说明"
+    Range("M4:M5,N4:N5").Select
+    Range("N4").Activate
+    ActiveWindow.SmallScroll ToRight:=-15
+    Range("M4:M5,N4:N5,A4:A5,B4:B5,C4:C5").Select
+    Range("C4").Activate
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    Range("A4:A5").Select
+    ActiveWindow.SmallScroll ToRight:=3
+    Range("A4:N5").Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorAccent1
+        .TintAndShade = 0.599993896298105
+        .PatternTintAndShade = 0
+    End With
+    Range("A4:A5").Select
+    ActiveWindow.SmallScroll ToRight:=3
+    Range("A4:N5").Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThick
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThick
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThick
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThick
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThick
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThick
+    End With
+    ActiveWindow.SmallScroll ToRight:=-3
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    Range("E7").Select
+    ActiveWindow.SmallScroll Down:=-6
+    ActiveWindow.SmallScroll ToRight:=-21
+    Sheets.Add After:=ActiveSheet
+    ActiveWindow.SmallScroll Down:=-9
+    ActiveCell.FormulaR1C1 = "=核对异常汇总表!RC"
+    Range("A2").Select
+    ActiveCell.FormulaR1C1 = "=核对异常汇总表!RC"
+    Range("A3").Select
+    ActiveCell.FormulaR1C1 = "=核对异常汇总表!RC"
+    Range("A4").Select
+    ActiveWindow.SmallScroll ToRight:=0
+    ActiveWindow.SmallScroll ToRight:=6
+    Range("M4").Select
+    ActiveCell.FormulaR1C1 = _
+        "1、原始凭证是否齐全。2、记账凭证与原始凭证是否相符。3、帐务处理是否正确。4、是否记录于恰当的会计期间。5、实际对方交易单位是否与账面记录一致。6、是否属于入账的业务。7、是否属于正常资金交易……"
+    Range("M4").Select
+    ActiveWindow.SmallScroll ToRight:=-24
+    Range("A4").Select
+    Range("A5").Select
+    ActiveCell.FormulaR1C1 = "日期"
+    Range("B5").Select
+    ActiveCell.FormulaR1C1 = "凭证号"
+    Range("C5").Select
+    ActiveCell.FormulaR1C1 = "业务内容"
+    Range("D5").Select
+    ActiveCell.FormulaR1C1 = "企业日记账记录"
+    Range("D6").Select
+    ActiveCell.FormulaR1C1 = "对方会计科目"
+    Range("E6").Select
+    ActiveCell.FormulaR1C1 = "对方交易名称"
+    Range("F6").Select
+    ActiveCell.FormulaR1C1 = "借方金额"
+    Range("G6").Select
+    ActiveCell.FormulaR1C1 = "贷方金额"
+    Range("H6").Select
+    ActiveCell.FormulaR1C1 = "记账日期"
+    Range("D5:H5").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    Range("I5").Select
+    ActiveCell.FormulaR1C1 = ""
+    ActiveCell.FormulaR1C1 = "银行日记账记录"
+    Range("I6").Select
+    ActiveCell.FormulaR1C1 = "交易对方名称"
+    Range("J6").Select
+    ActiveCell.FormulaR1C1 = "借方金额"
+    Range("K6").Select
+    ActiveCell.FormulaR1C1 = "贷方金额"
+    Range("L6").Select
+    ActiveCell.FormulaR1C1 = "流水单日期"
+    ActiveWindow.SmallScroll ToRight:=6
+    Range("M5").Select
+    ActiveCell.FormulaR1C1 = "核对内容"
+    Range("M6").Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("N6").Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("O6").Select
+    ActiveCell.FormulaR1C1 = "3"
+    Range("P6").Select
+    ActiveCell.FormulaR1C1 = "4"
+    Range("Q6").Select
+    ActiveCell.FormulaR1C1 = "5"
+    Range("R6").Select
+    ActiveCell.FormulaR1C1 = "6"
+    Range("S6").Select
+    ActiveCell.FormulaR1C1 = "7"
+    Range("T6").Select
+    ActiveCell.FormulaR1C1 = "……"
+    Range("U5").Select
+    ActiveCell.FormulaR1C1 = "异常情况的解释或处理"
+    Range("A5:U6").Select
+    Range("U6").Activate
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorAccent1
+        .TintAndShade = 0.599993896298105
+        .PatternTintAndShade = 0
+    End With
+    Columns("U:U").EntireColumn.AutoFit
+    ActiveWindow.SmallScroll ToRight:=-21
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+    End With
+    ActiveWindow.SmallScroll ToRight:=-18
+    Range("A5:A6,B5:B6,C5:C6").Select
+    Range("C5").Activate
+    ActiveWindow.SmallScroll ToRight:=12
+    Range("A5:A6,B5:B6,C5:C6,U5:U6").Select
+    Range("U5").Activate
+    ActiveWindow.SmallScroll ToRight:=-12
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    ActiveWindow.SmallScroll ToRight:=-12
+    Range("I5:L5").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    Columns("I:I").Select
+    Columns("I:I").EntireColumn.AutoFit
+    ActiveWindow.SmallScroll ToRight:=-3
+    Columns("E:E").Select
+    Columns("E:E").EntireColumn.AutoFit
+    Columns("D:D").Select
+    Columns("D:D").EntireColumn.AutoFit
+    Range("A5:A6").Select
+    ActiveWindow.SmallScroll ToRight:=12
+    Range("A5:U6").Select
+    ActiveWindow.SmallScroll ToRight:=-24
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    Range("C7").Select
+    ActiveWindow.SmallScroll ToRight:=-12
+    Range("A1").Select
+    ActiveWindow.SmallScroll ToRight:=15
+    Range("A1:U6").Select
+    ActiveWindow.SmallScroll ToRight:=-33
+    With Selection.Font
+        .Name = "宋体"
+        .Size = 11
+        .Strikethrough = False
+        .Superscript = False
+        .Subscript = False
+        .OutlineFont = False
+        .Shadow = False
+        .Underline = xlUnderlineStyleNone
+        .ThemeColor = xlThemeColorLight1
+        .TintAndShade = 0
+        .ThemeFont = xlThemeFontNone
+    End With
+    With Selection.Font
+        .Name = "宋体"
+        .Size = 10
+        .Strikethrough = False
+        .Superscript = False
+        .Subscript = False
+        .OutlineFont = False
+        .Shadow = False
+        .Underline = xlUnderlineStyleNone
+        .ThemeColor = xlThemeColorLight1
+        .TintAndShade = 0
+        .ThemeFont = xlThemeFontNone
+    End With
+    Sheets("核对异常汇总表").Select
+    Range("A1").Select
+    ActiveWindow.SmallScroll ToRight:=9
+    Range("A1:N5").Select
+    ActiveWindow.SmallScroll ToRight:=-18
+    With Selection.Font
+        .Name = "宋体"
+        .Size = 11
+        .Strikethrough = False
+        .Superscript = False
+        .Subscript = False
+        .OutlineFont = False
+        .Shadow = False
+        .Underline = xlUnderlineStyleNone
+        .ThemeColor = xlThemeColorLight1
+        .TintAndShade = 0
+        .ThemeFont = xlThemeFontNone
+    End With
+    With Selection.Font
+        .Name = "宋体"
+        .Size = 10
+        .Strikethrough = False
+        .Superscript = False
+        .Subscript = False
+        .OutlineFont = False
+        .Shadow = False
+        .Underline = xlUnderlineStyleNone
+        .ThemeColor = xlThemeColorLight1
+        .TintAndShade = 0
+        .ThemeFont = xlThemeFontNone
+    End With
+    Sheets("银行流水核查汇总表").Select
+    Range("A1").Select
+    ActiveWindow.SmallScroll ToRight:=6
+    Range("A1:N12").Select
+    ActiveWindow.SmallScroll ToRight:=-18
+    With Selection.Font
+        .Name = "宋体"
+        .Size = 11
+        .Strikethrough = False
+        .Superscript = False
+        .Subscript = False
+        .OutlineFont = False
+        .Shadow = False
+        .Underline = xlUnderlineStyleNone
+        .ThemeColor = xlThemeColorLight1
+        .TintAndShade = 0
+        .ThemeFont = xlThemeFontNone
+    End With
+    With Selection.Font
+        .Name = "宋体"
+        .Size = 10
+        .Strikethrough = False
+        .Superscript = False
+        .Subscript = False
+        .OutlineFont = False
+        .Shadow = False
+        .Underline = xlUnderlineStyleNone
+        .ThemeColor = xlThemeColorLight1
+        .TintAndShade = 0
+        .ThemeFont = xlThemeFontNone
+    End With
+    Range("E9").Select
+    ActiveCell.FormulaR1C1 = "=SUM(R[-2]C:R[-1]C)"
+    Range("E9").Select
+    Selection.AutoFill Destination:=Range("E9:H9"), Type:=xlFillDefault
+    Range("E9:H9").Select
+    Range("I7").Select
+    ActiveWindow.SmallScroll ToRight:=3
+    Application.CutCopyMode = False
+    ActiveCell.FormulaR1C1 = "=RC[-2]/RC[-4]"
+    Range("J7").Select
+    Application.CutCopyMode = False
+    ActiveCell.FormulaR1C1 = "=RC[-2]/RC[-4]"
+    Range("J8").Select
+    ActiveWindow.SmallScroll ToRight:=-9
+    Sheets("Sheet2").Select
+    Range("E8").Select
+    ActiveWindow.SmallScroll Down:=-3
+    Range("M7").Select
+    ActiveWindow.SmallScroll Down:=-3
+    With Selection.Validation
+        .Delete
+        .Add Type:=xlValidateList, AlertStyle:=xlValidAlertStop, Operator:= _
+        xlBetween, Formula1:="√,×"
+        .IgnoreBlank = True
+        .InCellDropdown = True
+        .InputTitle = ""
+        .ErrorTitle = ""
+        .InputMessage = ""
+        .ErrorMessage = ""
+        .IMEMode = xlIMEModeNoControl
+        .ShowInput = True
+        .ShowError = True
+    End With
+    Selection.AutoFill Destination:=Range("M7:S7"), Type:=xlFillDefault
+    Range("M7:S7").Select
+    Range("L7").Select
+End Sub'''
+    
+    sys.coinit_flags = 0
+    com_instance = Dispatch("Excel.Application")
+    com_instance.Visible = True
+    com_instance.DisplayAlerts = False
+    objworkbook = com_instance.Workbooks(1)
+    xlmodule02 = objworkbook.VBProject.VBComponents.Add(1)
+    xlmodule02.CodeModule.AddFromString(宏代码.strip())
+    com_instance.Run("填写流水核查底稿格式宏")
